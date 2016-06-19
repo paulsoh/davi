@@ -195,6 +195,7 @@ d3.json('new_project_full_data.json', function(data) {
     
   function renderHistogram(data, i) {
 
+
     var money_data = data.map( function(d) { return d.rounded_money; });
 
     var x_range = [];
@@ -213,6 +214,7 @@ d3.json('new_project_full_data.json', function(data) {
     var histogram_data = d3.layout.histogram()
                            .bins(x.ticks(20))
                            ( money_data );
+    window.x = x;
 
     var y = d3.scale.linear()
         .domain([0, d3.max(histogram_data, function(d) { return d.y; })])
@@ -224,9 +226,12 @@ d3.json('new_project_full_data.json', function(data) {
 
     var bar = svg.selectAll(".bar")
                  .data(histogram_data)
-                 .enter().append("g")
-                 .attr("class", "bar")
-                 .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
+
+    bar.exit().remove();
+
+    bar.enter().append("g")
+       .attr("class", "bar")
+       .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
                   
                  //.data(histogram_data)
                  //.enter().append("g")
@@ -241,7 +246,5 @@ d3.json('new_project_full_data.json', function(data) {
         .attr("height", function(d) { return height - y(d.length); })
         .attr("fill", "blue");
 
-    //bar.exit()
-    //   .remove();
   }
 });
