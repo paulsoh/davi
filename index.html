@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+
+  <script src="http://d3js.org/d3.v4.0.0-alpha.45.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
   <script src="davi.js"></script>
   <style>
@@ -12,6 +14,13 @@
     }
 
     #pieChart {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      width: 960px;
+      height: 500px;
+      position: relative;
+    }
+
+    #histogram {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       width: 960px;
       height: 500px;
@@ -28,6 +37,8 @@
 </head>
 <body>
   <div id="pieChart">
+  </div>
+  <div id="histogram">
   </div>
 </body>
 </html>
